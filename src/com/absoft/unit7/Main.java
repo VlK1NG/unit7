@@ -6,9 +6,13 @@ import com.absoft.unit7.beans.Shape;
 import com.absoft.unit7.beans.Square;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException,
+            NoSuchMethodException, InvocationTargetException,
+            InstantiationException, IllegalAccessException {
+
         Class<Circle> circleClass = Circle.class;
         System.out.println(circleClass.getName());
         System.out.println(circleClass.getSimpleName());
@@ -21,6 +25,14 @@ public class Main {
         System.out.println("================================");
         printPerimeter(new Square(10));
         printPerimeter(new Rectangle(10,11));
+
+        System.out.println("=================================");
+
+        Class<?> aClass = Class.forName(args[0]);
+        var shape =
+                (Shape) aClass.getDeclaredConstructor(double.class)
+                        .newInstance(10.0);
+        printPerimeter(shape);
     }
 
 

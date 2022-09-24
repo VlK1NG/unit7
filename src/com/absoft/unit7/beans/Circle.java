@@ -3,7 +3,6 @@ package com.absoft.unit7.beans;
 
 import com.absoft.unit7.annotations.MyAnnotation;
 
-@MyAnnotation
 public class Circle implements Shape{
 
     private double radius;
@@ -16,11 +15,12 @@ public class Circle implements Shape{
         return radius;
     }
 
-
+    @MyAnnotation(myInt = 5)
     public Circle(double radius) {
         this.radius = radius;
     }
 
+    @MyAnnotation(value = {"asdas","dsfsa"}, myInt = 56)
     @Override
     public double getSqare() {
         return radius * radius * Math.PI;
